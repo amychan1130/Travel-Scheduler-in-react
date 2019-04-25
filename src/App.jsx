@@ -95,7 +95,7 @@ class App extends React.Component {
       <div className="flex-wrapper">
         <div className="container">
           <header>
-            <h1 className="heading">Today</h1>
+            <h1 className="heading">Today </h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
           {items.length == 0 && <EmptyState />}
