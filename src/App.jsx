@@ -111,9 +111,11 @@ class App extends React.Component {
             <h1 className="heading"> {this.state.startDate.toDateString()} </h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
-          {items.length == 0 && <EmptyState />}
-            <div className="items-container">
-              {items.map((item) =>
+
+          <div className = "innerContainer">
+            <div className = "nav">
+            {items.length == 0 && <EmptyState />}
+            {items.map((item) =>
               <TodoItem description = {item.description}
                         location = {item.location}
                         sessionsCompleted = {item.sessionsCompleted}
@@ -121,11 +123,22 @@ class App extends React.Component {
                         startSession = {() => this.startSession(item.id)}
                         toggleIsCompleted = {() => this.toggleItemIsCompleted(item.id)}
                         key = {item.id}/>) }
+            
+              
             </div>
+            <div className= "main">
+            <div className="items-container">
+              <footer>
+              <TodoInput addItem={this.addItem} />
+              </footer>
+            </div>
+            
+            </div>
+            
+          </div>
+            
         </div>
-        <footer>
-          <TodoInput addItem={this.addItem} />
-        </footer>
+       
       </div>
     );
   }
