@@ -98,25 +98,39 @@ class App extends React.Component {
             <h1 className="heading">Today </h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
-          {items.length == 0 && <EmptyState />}
+          
             {sessionIsRunning && <Timer
               mode="WORK"
               onSessionComplete={() => this.increaseSessionsCompleted(itemIdRunning)}
               autoPlays
             />}
-            <div className="items-container">
-              {items.map((item) =>
+
+          <div className = "innerContainer">
+            <div className = "nav">
+            {items.length == 0 && <EmptyState />}
+            {items.map((item) =>
               <TodoItem description = {item.description}
                         sessionsCompleted = {item.sessionsCompleted}
                         isCompleted = {item.isCompleted}
                         startSession = {() => this.startSession(item.id)}
                         toggleIsCompleted = {() => this.toggleItemIsCompleted(item.id)}
                         key = {item.id}/>) }
+            
+              
             </div>
+            <div className= "main">
+            <div className="items-container">
+              <footer>
+              <TodoInput addItem={this.addItem} />
+              </footer>
+            </div>
+            
+            </div>
+            
+          </div>
+            
         </div>
-        <footer>
-          <TodoInput addItem={this.addItem} />
-        </footer>
+       
       </div>
     );
   }
