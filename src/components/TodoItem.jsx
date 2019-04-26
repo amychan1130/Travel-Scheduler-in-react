@@ -3,6 +3,8 @@ import '../styles/todoItem.css';
 import SessionsCompletedCounter from './SessionsCompletedCounter';
 import { ReactComponent as Check } from '../icons/check.svg';
 import { ReactComponent as Clock } from '../icons/clock.svg';
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
 function TodoItem({
   description,
@@ -15,6 +17,7 @@ function TodoItem({
   toggleIsCompleted,
 }) {
   return (
+    
     <div className="card todo-item-container">
       <div className="todo-item-container-left">
         <button onClick={toggleIsCompleted} type="button" className="todo-item-complete-button">
