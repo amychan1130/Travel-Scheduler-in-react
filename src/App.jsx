@@ -29,12 +29,14 @@ class App extends React.Component {
     };
   }
 
-  addItem(description, location) {
+  addItem(description, location, start, end) {
     const { nextItemId } = this.state;
     const newItem = {
       id: nextItemId,
       description: description,
       location: location,
+      start: start,
+      end: end,
       sessionsCompleted: 0,
       isCompleted: false
     };
@@ -102,13 +104,13 @@ class App extends React.Component {
     } = this.state;
     return (
       <div className="flex-wrapper">
-        <DatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChangeDate}
-        />
         <div className="container">
           <header>
-            <h1 className="heading"> {this.state.startDate.toDateString()} </h1>
+            <h1 className="heading"> {this.state.startDate.toDateString()} 
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChangeDate}
+            /></h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
 
@@ -118,6 +120,8 @@ class App extends React.Component {
             {items.map((item) =>
               <TodoItem description = {item.description}
                         location = {item.location}
+                        start = {item.start}
+                        end = {item.end}
                         sessionsCompleted = {item.sessionsCompleted}
                         isCompleted = {item.isCompleted}
                         startSession = {() => this.startSession(item.id)}

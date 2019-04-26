@@ -7,6 +7,8 @@ import { ReactComponent as Clock } from '../icons/clock.svg';
 function TodoItem({
   description,
   location,
+  start, 
+  end,
   sessionsCompleted,
   isCompleted,
   startSession,
@@ -24,6 +26,8 @@ function TodoItem({
         <div>
           <div className="todo-item-description">{ description }</div>
           <div className="todo-item-description">{ location }</div>
+          <div className="todo-item-description">{ start }</div>
+          <div className="todo-item-description">{ end }</div>
           <SessionsCompletedCounter sessionsCompleted={sessionsCompleted} />
         </div>
       </div>
