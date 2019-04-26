@@ -4,7 +4,9 @@ import TodoItem from './components/TodoItem';
 import TodoInput from './components/TodoInput';
 import ClearButton from './components/ClearButton';
 import EmptyState from './components/EmptyState';
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 import './styles/App.css';
 
 class App extends React.Component {
@@ -15,8 +17,10 @@ class App extends React.Component {
     this.startSession = this.startSession.bind(this);
     this.increaseSessionsCompleted = this.increaseSessionsCompleted.bind(this);
     this.toggleItemIsCompleted = this.toggleItemIsCompleted.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
 
     this.state = {
+      startDate: new Date(),
       items: [], 
       nextItemId:  0, 
       sessionIsRunning: false,
@@ -25,11 +29,12 @@ class App extends React.Component {
     };
   }
 
-  addItem(description) {
+  addItem(description, location) {
     const { nextItemId } = this.state;
     const newItem = {
       id: nextItemId,
       description: description,
+      location: location,
       sessionsCompleted: 0,
       isCompleted: false
     };
@@ -37,6 +42,10 @@ class App extends React.Component {
       items: prevState.items.concat(newItem),
       nextItemId: prevState.nextItemId + 1
     })));
+  }
+
+  handleChangeDate(date) {
+    this.setState({startDate: date});
   }
 
   clearCompletedItems() {
@@ -93,20 +102,20 @@ class App extends React.Component {
     } = this.state;
     return (
       <div className="flex-wrapper">
+        <DatePicker
+          selected={this.state.startDate}
+          onChange={this.handleChangeDate}
+        />
         <div className="container">
           <header>
-            <h1 className="heading">Today </h1>
+            <h1 className="heading"> {this.state.startDate.toDateString()} </h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
           {items.length == 0 && <EmptyState />}
-            {sessionIsRunning && <Timer
-              mode="WORK"
-              onSessionComplete={() => this.increaseSessionsCompleted(itemIdRunning)}
-              autoPlays
-            />}
             <div className="items-container">
               {items.map((item) =>
               <TodoItem description = {item.description}
+                        location = {item.location}
                         sessionsCompleted = {item.sessionsCompleted}
                         isCompleted = {item.isCompleted}
                         startSession = {() => this.startSession(item.id)}
