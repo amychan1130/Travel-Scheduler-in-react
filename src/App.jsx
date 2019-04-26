@@ -102,13 +102,12 @@ class App extends React.Component {
     } = this.state;
     return (
       <div className="flex-wrapper">
-        <DatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChangeDate}
-        />
         <div className="container">
           <header>
-            <h1 className="heading"> {this.state.startDate.toDateString()} </h1>
+            <h1 className="heading"> {this.state.startDate.toDateString()} <DatePicker
+          selected={this.state.startDate}
+          onChange={this.handleChangeDate}
+        /></h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
 
@@ -126,6 +125,7 @@ class App extends React.Component {
             
               
             </div>
+            <div className = "middle"></div>
             <div className= "main">
             <div className="items-container">
               <footer>

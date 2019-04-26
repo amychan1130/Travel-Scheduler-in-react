@@ -12,6 +12,11 @@
 .nav {
   padding-left: 30px;
   min-width: 70%;
+  outline: 5px dotted #cce6ff;
+}
+.middle {
+  
+  min-width: 3%;
 }
 
 .main {
