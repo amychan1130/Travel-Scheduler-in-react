@@ -6,6 +6,8 @@ import ClearButton from './components/ClearButton';
 import EmptyState from './components/EmptyState';
 import DatePicker from "react-datepicker";
 
+import {Timeline, TimelineEvent} from 'react-event-timeline'
+
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/App.css';
 
@@ -117,6 +119,7 @@ class App extends React.Component {
           <div className = "innerContainer">
             <div className = "nav">
             {items.length == 0 && <EmptyState />}
+            <Timeline>
             {items.map((item) =>
               <TodoItem description = {item.description}
                         location = {item.location}
@@ -128,7 +131,7 @@ class App extends React.Component {
                         toggleIsCompleted = {() => this.toggleItemIsCompleted(item.id)}
                         key = {item.id}/>) }
             
-              
+            </Timeline>
             </div>
             <div className= "main">
             <div className="items-container">
