@@ -11,6 +11,7 @@ import {Timeline, TimelineEvent} from 'react-event-timeline'
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/App.css';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -96,6 +97,16 @@ class App extends React.Component {
     })));
   }
 
+  displayTime(time) {
+    const res = time.split(':');
+    const res2 = time.split(" ");
+    
+    return res[0] + " " + res2[res2.length-1];
+
+  }
+
+
+
   render() {
     const {
       items,
@@ -112,6 +123,7 @@ class App extends React.Component {
             <DatePicker
               selected={this.state.startDate}
               onChange={this.handleChangeDate}
+              className="time-input"
             /></h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
@@ -123,7 +135,7 @@ class App extends React.Component {
             {items.map((item) =>
               <TodoItem description = {item.description}
                         location = {item.location}
-                        start = {item.start}
+                        start = {this.displayTime(item.start)}
                         end = {item.end}
                         sessionsCompleted = {item.sessionsCompleted}
                         isCompleted = {item.isCompleted}
