@@ -5,6 +5,8 @@ import TodoInput from './components/TodoInput';
 import ClearButton from './components/ClearButton';
 import EmptyState from './components/EmptyState';
 import DatePicker from "react-datepicker";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
 import {Timeline, TimelineEvent} from 'react-event-timeline'
 
@@ -20,6 +22,7 @@ class App extends React.Component {
     this.increaseSessionsCompleted = this.increaseSessionsCompleted.bind(this);
     this.toggleItemIsCompleted = this.toggleItemIsCompleted.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.db = firebase.firestore(); 
 
     this.state = {
       startDate: new Date(),
