@@ -13,6 +13,7 @@ import {Timeline, TimelineEvent} from 'react-event-timeline'
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/App.css';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.increaseSessionsCompleted = this.increaseSessionsCompleted.bind(this);
     this.toggleItemIsCompleted = this.toggleItemIsCompleted.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.displayTime = this.displayTime.bind(this);
     this.db = firebase.firestore(); 
 
     this.state = {
@@ -34,7 +36,7 @@ class App extends React.Component {
     };
   }
 
-  addItem(description, location, start, end) {
+  addItem(description, location, start, end, time) {
     const { nextItemId } = this.state;
     const newItem = {
       id: nextItemId,
@@ -42,11 +44,14 @@ class App extends React.Component {
       location: location,
       start: start,
       end: end,
-      sessionsCompleted: 0,
-      isCompleted: false
+      time: time
     };
+    var newitems = [...this.state.items];
+    newitems = newitems.concat(newItem);
+    newitems = newitems.sort(function(a, b){return a.time - b.time})
+    console.log(newitems);
     this.setState((prevState => ({
-      items: prevState.items.concat(newItem),
+      items: newitems,
       nextItemId: prevState.nextItemId + 1
     })));
   }
@@ -99,6 +104,16 @@ class App extends React.Component {
     })));
   }
 
+  displayTime(time) {
+    
+    const res = time.split(':');
+    const res2 = time.split(" ");
+    
+    return res[0] + " " + res2[res2.length-1];
+
+  }
+
+
   render() {
     const {
       items,
@@ -115,6 +130,7 @@ class App extends React.Component {
             <DatePicker
               selected={this.state.startDate}
               onChange={this.handleChangeDate}
+              className="time-input"
             /></h1>
             {(toggle > 0) && <ClearButton onClick={this.clearCompletedItems} />}
           </header>
@@ -126,16 +142,13 @@ class App extends React.Component {
             {items.map((item) =>
               <TodoItem description = {item.description}
                         location = {item.location}
-                        start = {item.start}
+                        start = {this.displayTime(item.start)}
                         end = {item.end}
-                        sessionsCompleted = {item.sessionsCompleted}
-                        isCompleted = {item.isCompleted}
-                        startSession = {() => this.startSession(item.id)}
-                        toggleIsCompleted = {() => this.toggleItemIsCompleted(item.id)}
                         key = {item.id}/>) }
             
             </Timeline>
             </div>
+            <div className = "middle"></div>
             <div className= "main">
             <div className="items-container">
               <footer>

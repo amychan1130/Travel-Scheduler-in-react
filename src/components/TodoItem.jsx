@@ -10,24 +10,16 @@ function TodoItem({
   description,
   location,
   start, 
-  end,
-  sessionsCompleted,
-  isCompleted,
-  startSession,
-  toggleIsCompleted,
+  end
 }) {
   return (
-
     <TimelineEvent 
       title= ""
       createdAt= {start}
     >
       <h3>{description}</h3>
-      <h4>
-      <img src={require('../icons/maps-and-flags.png')} height="15" width="15"></img>
-      {location}</h4>
+      <h4>{location}</h4>
     </TimelineEvent>
-    
   );
 }
 

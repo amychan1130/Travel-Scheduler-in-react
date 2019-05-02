@@ -2,7 +2,7 @@
   background-color: white;
   color: #3A3131;
   padding: 1.5em 0.8em;
-  display:flex;
+  display:inline-block;
   justify-content: space-between;
   min-height: 27px;
 }

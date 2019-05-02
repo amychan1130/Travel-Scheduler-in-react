@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.todo-input, .todo-input-button {
+.todo-input, .todo-input-button, h5 {
   box-sizing: border-box;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
@@ -18,6 +18,7 @@
   flex-grow: 1;
 }
 .todo-input::placeholder {
+  
   color: #8A98AF;
 }
 
@@ -28,7 +29,7 @@
 .todo-input-button {
   background: #4A6ED2;
   color: white;
-  border-radius: 55px 55px 55px 55px;
+  border-radius: 55px 55px 55px 55px;/*55px 55px 55px 55px;*/
   /*
   center children vertically and horizontally
   https://stackoverflow.com/questions/25832340/css-flexbox-vertically-horizontally-center-image-without-explicitely-defining-pa
@@ -45,3 +46,55 @@
   width: 1em;
   height: 1em;
 }
+h5 {
+  padding-left: 1em;
+  background: #E7EDF8;
+  border-radius: 4px 0 0 4px;
+  flex-grow: 1;
+  color: #8A98AF;
+  width: 250px;
+  display: inline-flexbox;
+}
+.row {
+  display: block;
+}
+
+.time-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  height: 30px;
+  width: 50%;
+  max-width: 150px;
+  border-radius: 30px;
+  border: 1px solid lightgray;
+  padding: 2px 20px;
+  font-size: 10pt;
+}
+
+.time-input:focus {
+  outline: none;
+  border: 2px solid #1dcaff;
+  background-color: white;
+  transition: 0.2s ease all;
+}
+img {
+  width: 300px;
+  height: 200px;
+}
+
+.right {
+  display: inline;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.left {
+  display: block;
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
