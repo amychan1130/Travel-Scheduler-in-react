@@ -137,7 +137,7 @@ export default class TodoInput extends React.Component {
 
         <div className = "left">
         <input placeholder = "search for" onChange = {this.handlefilter} className="time-input"/>
-        {LocationData.locations.filter(lo => lo.city.includes(this.state.f)).map((l) => <Photos loc={l} onclick ={() => this.handlePin(l.id)}/> )}
+        {LocationData.locations.filter(lo => lo.city.includes(this.state.f)).slice(0,10).map((l) => <Photos loc={l} onclick ={() => this.handlePin(l.id)}/> )}
         </div>
         
 
