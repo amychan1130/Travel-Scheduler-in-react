@@ -1,5 +1,4 @@
 import React from 'react';
-import Timer from './components/Timer';
 import TodoItem from './components/TodoItem';
 import TodoInput from './components/TodoInput';
 import ClearButton from './components/ClearButton';
